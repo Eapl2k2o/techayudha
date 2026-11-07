@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Elysium – Tech Ayudha Trainer Recognition</title>
+
   <style>
     :root {
       --gold: #ffd166;
@@ -11,7 +13,11 @@
       --pink: #ff5ca8;
       --cream: #fff8e8;
     }
-    * { box-sizing: border-box; }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       min-height: 100vh;
@@ -25,92 +31,272 @@
       padding: 28px 16px 44px;
       overflow-x: hidden;
     }
+
     .sparkle {
-      position: fixed; font-size: 22px; opacity: .55; pointer-events: none;
+      position: fixed;
+      font-size: 22px;
+      opacity: .55;
+      pointer-events: none;
       animation: float 5s ease-in-out infinite;
     }
-    .s1 { top: 8%; left: 5%; } .s2 { top: 20%; right: 7%; animation-delay: 1s; }
-    .s3 { bottom: 12%; left: 8%; animation-delay: 2s; } .s4 { bottom: 18%; right: 8%; animation-delay: .5s; }
-    @keyframes float { 50% { transform: translateY(-14px) rotate(12deg); } }
-    .container { width: min(760px, 100%); margin: auto; position: relative; }
-    .hero { text-align: center; margin: 8px 0 24px; }
+
+    .s1 { top: 8%; left: 5%; }
+    .s2 { top: 20%; right: 7%; animation-delay: 1s; }
+    .s3 { bottom: 12%; left: 8%; animation-delay: 2s; }
+    .s4 { bottom: 18%; right: 8%; animation-delay: .5s; }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-14px) rotate(12deg);
+      }
+    }
+
+    .container {
+      width: min(760px, 100%);
+      margin: auto;
+      position: relative;
+    }
+
+    .hero {
+      text-align: center;
+      margin: 8px 0 24px;
+    }
+
     .eyebrow {
-      display: inline-block; padding: 7px 15px; border: 1px solid rgba(255,255,255,.38);
-      border-radius: 30px; letter-spacing: 2px; font-size: 12px; color: #ffe7a8;
+      display: inline-block;
+      padding: 7px 15px;
+      border: 1px solid rgba(255,255,255,.38);
+      border-radius: 30px;
+      letter-spacing: 2px;
+      font-size: 12px;
+      color: #ffe7a8;
       background: rgba(255,255,255,.09);
     }
+
     h1 {
-      margin: 15px 0 5px; font-size: clamp(32px, 7vw, 54px); line-height: 1.08;
-      color: var(--gold); text-shadow: 0 4px 18px rgba(0,0,0,.25);
+      margin: 15px 0 5px;
+      font-size: clamp(32px, 7vw, 54px);
+      line-height: 1.08;
+      color: var(--gold);
+      text-shadow: 0 4px 18px rgba(0,0,0,.25);
     }
-    .subtitle { margin: 10px 0 0; font-size: 16px; color: #ffeaf4; }
+
+    .subtitle {
+      margin: 10px 0 0;
+      font-size: 16px;
+      color: #ffeaf4;
+    }
+
     .panel {
-      background: rgba(255,255,255,.96); color: #2c1744; border-radius: 24px;
-      padding: clamp(22px, 5vw, 36px); box-shadow: 0 20px 55px rgba(15,0,30,.35);
+      background: rgba(255,255,255,.96);
+      color: #2c1744;
+      border-radius: 24px;
+      padding: clamp(22px, 5vw, 36px);
+      box-shadow: 0 20px 55px rgba(15,0,30,.35);
       border: 2px solid rgba(255,209,102,.8);
     }
-    label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 16px; }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
     select {
-      width: 100%; padding: 15px 16px; border: 2px solid #e5c5dc; border-radius: 12px;
-      background: #fff; color: #35154e; font-size: 16px; outline: none;
+      width: 100%;
+      padding: 15px 16px;
+      border: 2px solid #e5c5dc;
+      border-radius: 12px;
+      background: #fff;
+      color: #35154e;
+      font-size: 16px;
+      outline: none;
     }
-    select:focus { border-color: #a52b82; box-shadow: 0 0 0 4px rgba(165,43,130,.12); }
+
+    select:focus {
+      border-color: #a52b82;
+      box-shadow: 0 0 0 4px rgba(165,43,130,.12);
+    }
+
     button {
-      width: 100%; margin-top: 16px; border: 0; border-radius: 12px; padding: 15px 20px;
-      color: #35113e; font-size: 17px; font-weight: 800; cursor: pointer;
+      width: 100%;
+      margin-top: 16px;
+      border: 0;
+      border-radius: 12px;
+      padding: 15px 20px;
+      color: #35113e;
+      font-size: 17px;
+      font-weight: 800;
+      cursor: pointer;
       background: linear-gradient(90deg, #ffd166, #ff9f68, #ff79a8);
-      box-shadow: 0 7px 18px rgba(166,61,95,.24); transition: transform .2s, filter .2s;
+      box-shadow: 0 7px 18px rgba(166,61,95,.24);
+      transition: transform .2s, filter .2s;
     }
-    button:hover { transform: translateY(-2px); filter: brightness(1.04); }
-    .hint { margin: 12px 0 0; color: #765d7d; font-size: 13px; text-align: center; }
-    #result { display: none; margin-top: 24px; animation: reveal .45s ease; }
-    @keyframes reveal { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+
+    .hint {
+      margin: 12px 0 0;
+      color: #765d7d;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    #result {
+      display: none;
+      margin-top: 24px;
+      animation: reveal .45s ease;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .award {
-      position: relative; overflow: hidden; text-align: center; border-radius: 20px;
-      padding: 28px 22px; color: #fff; background: linear-gradient(135deg, #4b176d, #9d236c 55%, #d34d65);
-      border: 1px solid #ffd166; box-shadow: 0 12px 28px rgba(54,13,67,.2);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+      border-radius: 20px;
+      padding: 28px 22px;
+      color: #fff;
+      background: linear-gradient(135deg, #4b176d, #9d236c 55%, #d34d65);
+      border: 1px solid #ffd166;
+      box-shadow: 0 12px 28px rgba(54,13,67,.2);
     }
-    .award:before, .award:after {
-      content: "✦"; position: absolute; color: rgba(255,218,130,.5); font-size: 70px;
+
+    .award:before,
+    .award:after {
+      content: "✦";
+      position: absolute;
+      color: rgba(255,218,130,.5);
+      font-size: 70px;
     }
-    .award:before { top: -18px; left: 12px; } .award:after { bottom: -30px; right: 14px; }
-    .small-title { color: #ffdf91; font-size: 12px; letter-spacing: 2.5px; font-weight: 800; }
-    .pseudo { font-size: clamp(25px, 5vw, 36px); font-weight: 900; margin: 10px 0 3px; color: #ffe08a; }
-    .trainer { font-size: 18px; font-weight: 700; margin-bottom: 18px; }
+
+    .award:before {
+      top: -18px;
+      left: 12px;
+    }
+
+    .award:after {
+      bottom: -30px;
+      right: 14px;
+    }
+
+    .small-title {
+      color: #ffdf91;
+      font-size: 12px;
+      letter-spacing: 2.5px;
+      font-weight: 800;
+    }
+
+    .pseudo {
+      font-size: clamp(25px, 5vw, 36px);
+      font-weight: 900;
+      margin: 10px 0 3px;
+      color: #ffe08a;
+    }
+
+    .trainer {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
     .description {
-      max-width: 610px; margin: auto; line-height: 1.75; font-size: 16px;
-      color: #fff8f0; position: relative; z-index: 1;
+      max-width: 610px;
+      margin: auto;
+      line-height: 1.75;
+      font-size: 16px;
+      color: #fff8f0;
+      position: relative;
+      z-index: 1;
     }
+
     .diwali {
-      margin-top: 22px; text-align: center; padding: 22px 12px 8px;
+      margin-top: 22px;
+      text-align: center;
+      padding: 22px 12px 8px;
       border-top: 1px dashed rgba(255,255,255,.45);
     }
-    .diwali h2 { margin: 0; color: #ffdf78; font-size: clamp(25px, 5vw, 34px); }
-    .diwali p { margin: 8px 0 0; color: #fff0f5; line-height: 1.6; }
-    .footer { text-align: center; margin-top: 22px; color: #ffe6ef; font-size: 13px; letter-spacing: .5px; }
-    .error { color: #b42318; font-size: 14px; margin-top: 9px; display: none; }
+
+    .diwali h2 {
+      margin: 0;
+      color: #ffdf78;
+      font-size: clamp(25px, 5vw, 34px);
+    }
+
+    .diwali p {
+      margin: 8px 0 0;
+      color: #fff0f5;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 22px;
+      color: #ffe6ef;
+      font-size: 13px;
+      letter-spacing: .5px;
+    }
+
+    .error {
+      color: #b42318;
+      font-size: 14px;
+      margin-top: 9px;
+      display: none;
+    }
+
     @media (max-width: 480px) {
-      body { padding: 20px 12px 32px; }
-      .panel { border-radius: 18px; }
-      .description { font-size: 15px; }
+      body {
+        padding: 20px 12px 32px;
+      }
+
+      .panel {
+        border-radius: 18px;
+      }
+
+      .description {
+        font-size: 15px;
+      }
     }
   </style>
 </head>
+
 <body>
-  <span class="sparkle s1">✨</span><span class="sparkle s2">🪔</span>
-  <span class="sparkle s3">🌟</span><span class="sparkle s4">🎆</span>
+
+  <span class="sparkle s1">✨</span>
+  <span class="sparkle s2">🪔</span>
+  <span class="sparkle s3">🌟</span>
+  <span class="sparkle s4">🎆</span>
 
   <main class="container">
+
     <header class="hero">
       <div class="eyebrow">ELYSIUM ACADEMY PRESENTS</div>
       <h1>TECH AYUDHA 2026</h1>
-      <p class="subtitle">Celebrating the people behind the achievement 🏆</p>
+      <p class="subtitle">
+        Celebrating the people behind the achievement 🏆
+      </p>
     </header>
 
     <section class="panel">
+
       <label for="trainerSelect">Choose a Trainer</label>
+
       <select id="trainerSelect">
         <option value="">-- Select your recognition name --</option>
+
         <option value="dhaniya">The Oracle Dhaniya</option>
         <option value="akshaya">The Empress Akshaya</option>
         <option value="vijay">The Visionary Vijay</option>
@@ -124,114 +310,192 @@
         <option value="malar">The Radiant Malar</option>
         <option value="meena">The Phoenix Meena</option>
         <option value="lakshika">The Catalyst Lakshika</option>
+        <option value="selvi">The Silent Force Selvi</option>
+
       </select>
-      <button type="button" onclick="showRecognition()">Submit &amp; Celebrate 🎉</button>
-      <div class="error" id="error">Please choose a trainer before submitting.</div>
+
+      <button type="button" onclick="showRecognition()">
+        Submit &amp; Celebrate 🎉
+      </button>
+
+      <div class="error" id="error">
+        Please choose a trainer before submitting.
+      </div>
 
       <section id="result" aria-live="polite">
+
         <div class="award">
-          <div class="small-title">A SPECIAL TECH AYUDHA RECOGNITION</div>
+
+          <div class="small-title">
+            A SPECIAL TECH AYUDHA RECOGNITION
+          </div>
+
           <div class="pseudo" id="pseudo"></div>
+
           <div class="trainer" id="trainer"></div>
+
           <p class="description" id="description"></p>
+
         </div>
+
         <div class="diwali">
           <h2>🪔 Happy Diwali! 🎆</h2>
-          <p>May this festival of lights bring happiness, success, new opportunities and bright beginnings to you and your family. ✨💛</p>
+
+          <p>
+            May this festival of lights bring happiness, success,
+            new opportunities and bright beginnings to you and
+            your family. ✨💛
+          </p>
         </div>
+
       </section>
+
     </section>
-    <footer class="footer">TRAIN • TRANSFORM • TOGETHER<br>One Team. Many Strengths. Shared Success.</footer>
+
+    <footer class="footer">
+      TRAIN • TRANSFORM • TOGETHER
+      <br>
+      One Team. Many Strengths. Shared Success.
+    </footer>
+
   </main>
 
   <script>
+
     const recognitions = {
+
       dhaniya: {
         pseudo: "PRECISION HAWK",
         trainer: "The Oracle Dhaniya",
         description: "Your speed in tracking the outputs and your clear, accurate evaluation made a real difference to Tech Ayudha. You followed the progress closely and provided timely, dependable support throughout the event. Thank you for helping the team deliver with clarity and confidence."
       },
+
       akshaya: {
         pseudo: "STUDENT SUCCESS GUARDIAN",
         trainer: "The Empress Akshaya",
         description: "You always looked at the event from the students’ point of view and genuinely wanted every student to succeed and win. Your careful thinking, attention to detail and commitment to accurate results helped make the evaluation meaningful. Thank you for putting student success first."
       },
+
       vijay: {
         pseudo: "MASTER STRATEGIST",
         trainer: "The Visionary Vijay",
         description: "You monitored the event from beginning to end and brought everything together through strong coordination and final cross-evaluation. Your willingness to guide, support and help everyone kept the process on track. Your overall contribution helped the team produce a stronger final outcome."
       },
+
       adithya: {
         pseudo: "EMPATHY CHAMPION",
         trainer: "The Maverick Adithya",
         description: "You worked with genuine care to ensure that no student felt left out or disappointed. Even when challenges came up, you handled them patiently and calmly. Your student-first attitude and steady problem-solving made a positive difference to the event."
       },
+
       pugal: {
         pseudo: "EXECUTION MAESTRO",
         trainer: "The Virtuoso Pugal",
         description: "You maintained a strong relationship with the students, coordinated their participation and brought everyone together at the right time. Your planning and execution were reflected in every stage of the event. Thank you for representing the team so effectively and keeping things organised."
       },
+
       rishan: {
         pseudo: "LAST-MILE LEGEND",
         trainer: "The Prodigy Rishan",
         description: "Your contribution played an important role in helping the Digital Marketing candidates perform well. You stayed involved until the final moments, helped bring students into the process and ensured the work moved forward despite last-minute challenges. Thank you for your persistence and support right through the finish."
       },
+
       rekha: {
         pseudo: "EVALUATION VIRTUOSO",
         trainer: "The Luminary Rekha",
         description: "Even though you could not be present on the event day, your evaluation support at the last minute was extremely valuable. Your contribution to planning discussions and your support across three additional technology evaluations strengthened the overall process. Thank you for being dependable whenever the team needed you."
       },
+
       monika: {
         pseudo: "OWNERSHIP ICON",
         trainer: "The Innovator Monika",
         description: "You independently took responsibility for your students’ results and stayed committed even beyond your scheduled time. You also prepared questions and supported students right up to the final moments. Your honesty, ownership and determination to complete the work properly truly stood out. Thank you for seeing it through."
       },
+
       vetri: {
         pseudo: "STUDENT ENGAGEMENT CATALYST",
         trainer: "The Titan Vetri",
         description: "From the beginning, you thought about how to make the event more student-oriented, increase participation and create a happy experience for everyone. Your extra effort encouraged students to take part and helped improve participation. Your focus on student happiness and engagement was one of the key strengths of the event."
       },
+
       princy: {
         pseudo: "MULTITASKING ACE",
         trainer: "The Sovereign Princy",
         description: "You supported both mock interviews and event responsibilities at the same time, while also contributing strongly to evaluations and online class tests. Your ability to manage multiple responsibilities with commitment and consistency was impressive. Thank you for being such a reliable support to the team."
       },
+
       malar: {
         pseudo: "EVENT PIONEER",
         trainer: "The Radiant Malar",
         description: "You took the initiative to start the first event independently and handled each responsibility with care and accuracy. You adapted quickly, supported the evaluation process and kept the team informed about student participation. Your initiative and practical support helped set the event in motion. Well done!"
       },
+
       meena: {
         pseudo: "SUPPORT DYNAMO",
         trainer: "The Phoenix Meena",
         description: "You proactively looked for ways to help and willingly took up responsibilities across different areas. Your approachable nature made it easy for the team to share work with you, and your support helped everyone move forward smoothly. Thank you for being available, dependable and ready to contribute wherever needed."
       },
+
       lakshika: {
         pseudo: "RAPID EXECUTION STAR",
         trainer: "The Catalyst Lakshika",
         description: "You completed your responsibilities quickly and delivered consistently across mock interviews, event activities and recorded online sessions. Your fast turnaround and timely output helped the event progress smoothly and finish efficiently. Thank you for your speed, focus and dependable execution."
+      },
+
+      // NEW RECOGNITION ADDED FOR SELVI MAM
+
+      selvi: {
+        pseudo: "THE SILENT FORCE",
+        trainer: "The Silent Force Selvi",
+        description: "Even though you worked silently, your contribution was present throughout both mock interviews and the event. From the initial results to the final output, you handled every responsibility calmly and effortlessly. Managing student coordination and maintaining student control were major responsibilities, and you handled them with great patience and ease. Your support was always there, even when it wasn't visibly highlighted. This time, your silent contribution deserves to be heard loudly. Thank you, Selvi Mam, for being a strong and dependable force behind the success of Tech Ayudha!"
       }
+
     };
 
+
     function showRecognition() {
+
       const selected = document.getElementById("trainerSelect").value;
+
       const error = document.getElementById("error");
+
       const result = document.getElementById("result");
 
+
       if (!selected) {
+
         error.style.display = "block";
+
         result.style.display = "none";
+
         return;
+
       }
 
+
       error.style.display = "none";
+
+
       const item = recognitions[selected];
+
+
       document.getElementById("pseudo").textContent = item.pseudo;
+
       document.getElementById("trainer").textContent = item.trainer;
+
       document.getElementById("description").textContent = item.description;
+
+
       result.style.display = "block";
-      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+      result.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
+      });
+
     }
+
   </script>
+
 </body>
 </html>
